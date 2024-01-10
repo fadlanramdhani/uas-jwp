@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <!-- Add additional style links or meta tags here if needed -->
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #c98888;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border: 1px solid #c98888;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #8d4a4a;
+            color: #fffdfe;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0025fa;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1></h1>
+    <!-- Add navigation links or other header content here -->
+</header>
+
+<main>
+    <div class="login-container">
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username">User Name:</label>
+                <input type="text" name="username" id="username" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign In" />
+            </div>
+        </form>
+
+        <div th:if="${param.error}" class="error-message">
+            Invalid username and password. Please try again.
+        </div>
+
+        <div th:if="${param.logout}" class="info-message">
+            You have been successfully logged out.
+        </div>
+    </div>
+</main>
+
+<footer>
+    <!-- Add footer content, copyright information, or links here -->
+</footer>
+
+</body>
+</html>

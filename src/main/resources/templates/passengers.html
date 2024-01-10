@@ -1,0 +1,100 @@
+<div th:switch="${passengers}">
+    <div th:case="*">
+        <h2>Hi, This is Train Makmur</h2>
+        <table>
+            <style>
+                /* Style untuk kontainer utama */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style untuk tabel */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+thead {
+    background-color: #f5f5f5;
+}
+
+/* Style untuk link */
+a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 10px 0;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Style untuk form */
+form {
+    margin-top: 20px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+            </style>
+            <thead>
+                <tr>
+                    <th>PASS ID</th>
+                    <th>Passenger name</th>
+                    <th>Address</th>
+                    <th>Phone number</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="passenger : ${passengers}">
+                    <td th:text="${passenger.passId}"></td>
+                    <td th:text="${passenger.passengerName}"></td>
+                    <td th:text="${passenger.address}"></td>
+                    <td th:text="${passenger.phoneNumber}"></td>
+                    <td><a th:href="@{/passengers/edit/{passId}(passId=${passenger.passId})}">Edit</a></td>
+                    <td><a th:href="@{/passengers/{passId}/delete (passId=${passenger.passId})}">Delete</a></td>
+                </tr>
+        </tbody>
+    </table>
+</div>      
+<p><a href="/signup-train">Add a new train</a></p>
+<p><a href="/signup-passenger">Add a new passenger</a></p>
+</div>
+<form th:action="@{/logout}" method="post">
+<input type="submit" value="Sign Out"/>
+</form>
